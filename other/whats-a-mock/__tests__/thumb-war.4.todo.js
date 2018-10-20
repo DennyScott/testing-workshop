@@ -1,7 +1,10 @@
 // avoid monkey-patching with jest.mock
 import thumbWar from '../thumb-war'
-import * as utils from '../utils'
+import * as utils from '../utils';
 
+jest.mock('../utils', () => ({
+  getWinner: jest.fn((p1, p2) => p2),
+}));
 // add an inline mock with the jest.mock API
 //
 // jest.mock(
@@ -12,8 +15,6 @@ import * as utils from '../utils'
 // (Hint #1)
 
 test('returns winner', () => {
-  // remove the next two lines
-  jest.spyOn(utils, 'getWinner')
   utils.getWinner.mockImplementation((p1, p2) => p2)
 
   const winner = thumbWar('Ken Wheeler', 'Kent C. Dodds')
