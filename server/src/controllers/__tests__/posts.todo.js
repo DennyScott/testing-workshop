@@ -1,5 +1,5 @@
-// import * as postsController from '../posts.todo'
-// import db from '../../utils/db'
+import * as postsController from '../posts.todo'
+import db from '../../utils/db'
 // eslint-disable-next-line no-unused-vars
 import {initDb, generate} from 'til-server-test-utils'
 
@@ -16,6 +16,18 @@ test('getPosts returns all posts in the database', async () => {
   // Assert:
   //   - ensure that your mock object functions were called properly
   //   - BONUS: ensure that the posts returned are the ones in the database `await db.getPosts()`
+  const req = {};
+  const res = {
+    json: jest.fn(),
+    status: jest.fn().mockReturnValue({send: jest.fn()}),
+  }
+
+  const posts = await postsController.getPosts(req, res);
+  expect(res.json).toHaveBeenCalledTimes(1);
+  expect(posts.length).toBeGreaterThan(0);
+  const dbPosts = await db.getPosts();
+  expect(posts).toEqual(dbPosts);
+
 })
 
 test('getPost returns the specific post', async () => {

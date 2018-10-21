@@ -15,7 +15,6 @@ jest.mock('../utils', () => ({
 // (Hint #1)
 
 test('returns winner', () => {
-  utils.getWinner.mockImplementation((p1, p2) => p2)
 
   const winner = thumbWar('Ken Wheeler', 'Kent C. Dodds')
   expect(winner).toBe('Kent C. Dodds')
@@ -24,8 +23,6 @@ test('returns winner', () => {
     expect(args).toEqual(['Ken Wheeler', 'Kent C. Dodds'])
   })
 
-  // remove the next line
-  utils.getWinner.mockRestore()
 })
 
 /*
