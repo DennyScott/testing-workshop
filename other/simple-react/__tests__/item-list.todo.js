@@ -8,13 +8,13 @@
 // to testing react components.
 
 // So you can use JSX (which transpiles down to React.createElement):
-// import React from 'react'
+import React from 'react'
 //
 // So you can render the component for testing:
-// import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom'
 //
 // So you can create a react element for the component you're testing:
-// import ItemList from '../item-list'
+import ItemList from '../item-list'
 
 // and here's an outline example of your first test:
 //   Create a "container" to render your component into (💰 use document.createElement('div'))
@@ -27,6 +27,20 @@
 //
 // For your second test, it will be very similar to the first.
 
+test('array is empty', () => {
+  const container = document.createElement('div');
+  const JSX = <ItemList items={[]} />;
+  ReactDOM.render(JSX, container);
+  expect(container.textContent).toMatch('no items');
+})
+
+test('array has items', () => {
+  const container = document.createElement('div');
+  const JSX = <ItemList items={['apple', 'orange', 'pear']} />;
+  ReactDOM.render(JSX, container);
+  expect(container.textContent).toMatch('apple', 'orange', 'pear');
+})
+
 //////// Elaboration & Feedback /////////
 // When you've finished with the exercises:
 // 1. Copy the URL below into your browser and fill out the form
@@ -36,8 +50,8 @@
 /*
 http://ws.kcd.im/?ws=Testing&e=basic%20react%20test&em=
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////
