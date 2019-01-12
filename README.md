@@ -242,8 +242,6 @@ something like:
 `fsevents` unavailable (this watcher can only be used on Darwin)'
 ```
 
-
-
 Jest watch mode has a dependency on a tool called `watchman`, which needs to be
 installed globally on your machine.
 
